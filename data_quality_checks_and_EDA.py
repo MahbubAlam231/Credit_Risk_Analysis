@@ -36,7 +36,7 @@ def quality_checks_and_eda():
 
     """# }}}
 
-    df = pd.read_csv('full_german_credit.csv')
+    df = pd.read_csv('full_german_credit_dataset.csv')
     # print(df.head())
 
     print(f"")
