@@ -5,6 +5,16 @@ File        : main.py
 Created     : 2025-08
 Description : Credit Risk Analysis using the German Credit dataset. # {{{
 
+Steps:
+  - Data quality checks
+  - Exploratory data analysis (EDA)
+  - PD (Probability of Default) modeling and model validation (using Pipeline, GridSearchCV, and CalibratedClassifierCV)
+  - LGD (Loss Given Default) simulation + Random Forest model
+  - EAD (Exposure at Default) simulation
+  - ECL (Expected Credit Loss) calculation
+  - Visualization of risk segments, summaries by Purpose, Property, and EAD buckets
+  - Stress testing under adverse scenarios
+
 # }}}
 """
 

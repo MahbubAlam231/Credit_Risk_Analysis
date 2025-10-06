@@ -7,11 +7,10 @@ Description : End-to-end Credit Risk Analysis using the German Credit dataset. #
 
 Steps:
   - Data quality checks
-  - Encode target (Risk)
-  - Exploratory data analysis (EDA): plots for risk vs account status, loan amount, and age
-  - PD (Probability of Default) modeling with Logistic Regression (using Pipeline, GridSearchCV, and CalibratedClassifierCV)
-  - LGD (Loss Given Default) simulation + Random Forest model (data lacks recovery)
-  - EAD (Exposure at Default) simulation (data lacks this column)
+  - Exploratory data analysis (EDA)
+  - PD (Probability of Default) modeling and model validation (using Pipeline, GridSearchCV, and CalibratedClassifierCV)
+  - LGD (Loss Given Default) simulation + Random Forest model
+  - EAD (Exposure at Default) simulation
   - ECL (Expected Credit Loss) calculation
   - Visualization of risk segments, summaries by Purpose, Property, and EAD buckets
   - Stress testing under adverse scenarios
@@ -263,8 +262,11 @@ pd_pipe = Pipeline([
 ])
 
 hparams = {
-    'logreg__C' : np.logspace(-3, 3, 13),
-    'logreg__class_weight' : [None, 'balanced']
+    'logreg__penalty': ['l1', 'l2'],
+    'logreg__C': np.logspace(-3, 3, 13),
+    'logreg__class_weight': [None, 'balanced'],
+    'logreg__fit_intercept': [True, False],
+    'logreg__tol': [1e-4, 1e-5]
 }
 
 cv = StratifiedKFold(n_splits=5, shuffle=True, random_state = 2)
@@ -294,7 +296,7 @@ cal_pd.fit(X_train, y_train)
 # ===============[[ Output title like this ]]===============
 print(f"")
 print(68*"=")
-print(f"==={22*'='}[[ Model report ]]{22*'='}===\n")
+print(f"==={20*'='}[[ Model validation ]]{20*'='}===\n")
 # ==========================================================
 
 """# {{{

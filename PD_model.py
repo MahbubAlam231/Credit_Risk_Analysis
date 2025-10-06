@@ -62,8 +62,11 @@ def pd_model(df):
     ])
 
     hparams = {
-        'logreg__C' : np.logspace(-3, 3, 13),
-        'logreg__class_weight' : [None, 'balanced']
+        'logreg__penalty': ['l1', 'l2'],
+        'logreg__C': np.logspace(-3, 3, 13),
+        'logreg__class_weight': [None, 'balanced'],
+        'logreg__fit_intercept': [True, False],
+        'logreg__tol': [1e-4, 1e-5]
     }
 
     cv = StratifiedKFold(n_splits=5, shuffle=True, random_state = 2)
