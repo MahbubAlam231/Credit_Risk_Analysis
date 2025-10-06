@@ -3,7 +3,7 @@
 This project implements an end-to-end **credit risk modeling pipeline** using the classic German Credit dataset.
 It follows the **IFRS 9 / Basel framework**, covering:
 
-- **PD (Probability of Default)** modeling with logistic regression + calibration
+- **PD (Probability of Default)** modeling with logistic regression + validation and calibration
 - **LGD (Loss Given Default)** simulation and modeling with Random Forests
 - **EAD (Exposure at Default)** simulation based on credit utilization assumptions
 - **ECL (Expected Credit Loss)** calculation with portfolio summaries and segment analysis
