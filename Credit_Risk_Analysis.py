@@ -6,6 +6,7 @@ Created     : 2025-09
 Description : End-to-end Credit Risk Analysis using the German Credit dataset. # {{{
 
 Steps:
+
   - Data quality checks
   - Exploratory data analysis (EDA)
   - PD (Probability of Default) modeling and model validation (using Pipeline, GridSearchCV, and CalibratedClassifierCV)
@@ -105,6 +106,7 @@ print(f"==={6*'='}[[ EDA with Account status, Loan amount and Age ]]{6*'='}===\n
 """# {{{
 
 Exploring how credit risk correlates with key features such as:
+
       - Account status (barplot of default rates)
       - Loan amount (boxplots by Risk)
       - Age (histograms + median lines by Risk)
@@ -225,6 +227,7 @@ print(f"==={24*'='}[[ PD model ]]{24*'='}===\n")
 """# {{{
 
 This is the Probability of Default (PD) modeling step (Basel/IFRS 9).
+
     - Train Logistic Regression model to predict PD.
     - Use preprocessing pipeline with scaling + one-hot encoding.
     - Tune hyperparameters via GridSearchCV (refit on ROC-AUC).
@@ -308,7 +311,8 @@ Generating validation report for the PD model. Discrimination (ROC-AUC, Gini) an
       - Average precision score
       - KS statistic (max separation between good/bad)
 
-    Threshold-based metrics at KS-optimal threshold:
+Threshold-based metrics at KS-optimal threshold:
+
       - KS-optimal threshold
       - Metrics at that threshold: Accuracy, Recall, Specificity, Confusion matrix
 
@@ -421,6 +425,7 @@ print(f"==={16*'='}[[ Simulate true defaulters ]]{16*'='}===\n")
 
 """# {{{
 Summary:
+
     - Sample 90% of bad credits as "true defaulters", using PD-weighted probabilities.
     - Assume that only those bad credits truly defaulted.
     - Use this as "historical training data" for LGD modeling.
@@ -446,6 +451,7 @@ print(f"==={15*'='}[[ Random forest model for LGD ]]{15*'='}==\n")
 
 """# {{{
 Summary:
+
     - Train Random Forest regressor on simulated LGD data.
     - Predict expected LGD (LGD_exp) for entire portfolio.
     - Expected LGD predictions are floored at 10% to align with CRR Article 164(4).
@@ -500,6 +506,7 @@ Formula (Basel/IFRS 9 style):
 
 In practice, banks use observed balances and limits.
 Assumptions:
+
 - Base utilization: random 50–95% of the credit amount
 - Risk adjustment: riskier borrowers (high PD) repay less
 - CCF fixed at 75% (typical Basel retail assumption)
@@ -535,11 +542,14 @@ print(f"==={18*'='}[[ Expected Credit Loss ]]{18*'='}===\n")
 """# {{{
 
 This block computes 12-month ECL.
+
   - Formula:
       ```
       ECL = PD * LGD * EAD * discount factor
       ```
+
 We report portfolio-level stats and segment summaries:
+
   - By Purpose
   - By Property * EAD buckets (qcut)
 
@@ -605,6 +615,7 @@ print(f"==={15*'='}[[ Visualizing the predictions ]]{15*'='}==\n")
 """# {{{
 
 Visualize results with:
+
     - ECL by Purpose (barplot)
     - ECL density by EAD bucket
     - Total EAD vs Total ECL by Property
@@ -686,6 +697,7 @@ print(f"==={15*'='}[[ Stress testing predictions ]]{15*'='}===\n")
 """# {{{
 
 Stress-test portfolio under adverse conditions:
+
     - PD +50%
     - LGD +20%
     - Both combined
