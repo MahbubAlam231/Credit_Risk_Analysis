@@ -18,4 +18,5 @@ The workflow includes **EDA, model training, visualization, and portfolio risk a
 For a full walkthrough with code, outputs, and visualizations, see the
 Jupyter Notebook [Credit_Risk_Analysis.ipynb](Credit_Risk_Analysis.ipynb)
 
-You can also run the notebook here: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/MahbubAlam231/Credit_Risk_Analysis/main?filepath=Credit_Risk_Analysis.ipynb)
+Run the notebook online (no setup required):
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/MahbubAlam231/Credit_Risk_Analysis/main?filepath=Credit_Risk_Analysis.ipynb)
